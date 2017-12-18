@@ -1,4 +1,6 @@
-﻿body {
+﻿@max-width: 960px;
+
+body {
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: #DB613B;
@@ -15,6 +17,16 @@ img {
 .body-content {
     width: 90%;
     margin: 0 auto;
+    max-width: @max-width;
+}
+
+nav {
+    background: #ffffff;
+
+    ul {
+        margin: 0 auto;
+        max-width: @max-width;
+    }
 }
 
 h1 {
