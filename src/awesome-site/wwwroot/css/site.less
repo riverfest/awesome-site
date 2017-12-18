@@ -1,52 +1,75 @@
 ﻿@max-width: 960px;
+@orange: #DB613B;
 
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: #DB613B;
+    margin: 0;
+    background-color: @orange;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
-img {
-    width: 100%;
-    border: 1px solid #e6e6e6;
-    border-radius: 2px;
-    box-shadow: 1px 1px 3px 1px rgba(0,0,0,.04);
-}
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    width: 90%;
-    margin: 0 auto;
-    max-width: @max-width;
-}
-
-nav {
+header {
     background: #ffffff;
-
-    ul {
+    height: 50px;
+    padding: 20px;
+    
+    nav {
         margin: 0 auto;
         max-width: @max-width;
+
+        ul {
+            position: relative;
+            float: right;
+
+            li {
+                margin: 0;
+                padding: 0;
+                position: relative;
+                list-style: none;
+                float: left;
+
+                a {
+                    text-transform: uppercase;
+                    padding: 0 15px;
+                    color: @orange;
+                    text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+                    font-size: 16px;
+                    text-decoration: none;
+                }
+            }
+        }
     }
 }
 
-h1 {
-    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-    color: #ffffff;
+.body-content {
+    width: 90%;
+    margin: 0 auto;
     
-    font-size: 36px;
-    font-weight: 700;
-    text-shadow: 1px 1px 1px rgba(0,0,0,.2);
-    letter-spacing: -2px;
-}
+    h1 {
+        color: #ffffff;        
+        font-size: 36px;
+        font-weight: 700;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+        letter-spacing: -2px;
+    }
 
-article {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 5px #888888;
-    padding: 10px;
+    article {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 5px #888888;
+        padding: 10px;
+
+        img {
+            width: 100%;
+            border: 1px solid #e6e6e6;
+            border-radius: 2px;
+            box-shadow: 1px 1px 3px 1px rgba(0,0,0,.04);
+        }
+    }
 }
 
 /* Hide/rearrange for smaller screens */
 @media screen and (min-width: 767px) {
-
+    .body-content {
+        max-width: @max-width;
+    }
 }
