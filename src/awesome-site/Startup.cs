@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,17 +24,22 @@ namespace awesome_site
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
+      var contentTypeProvider = new FileExtensionContentTypeProvider();
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
         app.UseBrowserLink();
+        contentTypeProvider.Mappings[".less"] = "text/css";
       }
       else
       {
         app.UseExceptionHandler("/Home/Error");
-      }
+      } 
 
-      app.UseStaticFiles();
+      app.UseStaticFiles(new StaticFileOptions()
+      {
+        ContentTypeProvider = contentTypeProvider
+      });
 
       app.UseMvc(routes =>
       {
