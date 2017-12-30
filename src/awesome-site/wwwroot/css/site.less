@@ -1,24 +1,45 @@
-﻿@max-width: 960px;
+﻿// Variables for everything
+@max-width: 960px;
+@wrapper-width: 95%;
 @orange: #DB613B;
+@black: #000000;
+@white: #ffffff;
+@light-gray: #797979;
+@dark-gray: #545454;
 
-body {
-    margin: 0;
-    background-color: @orange;
-    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+@font-color: @light-gray;
+@theme-color: @orange;
+
+// General Rules start
+html {
+    font-size: 14px;
+    line-height: 1.2em;
 }
 
+body {
+    margin: 0; // Remove that pesky default margin
+    background-color: @white;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    color: @font-color;
+}
+
+a {
+    color: @theme-color;
+}
+// General rules end
+
 header {
-    background: #ffffff;
     height: 50px;
-    padding: 20px;
     
     nav {
-        margin: 0 auto;
+        width: @wrapper-width;
         max-width: @max-width;
+        margin: 0 auto;
 
         ul {
             position: relative;
             float: right;
+            padding: 0;
 
             li {
                 margin: 0;
@@ -30,9 +51,8 @@ header {
                 a {
                     text-transform: uppercase;
                     padding: 0 15px;
-                    color: @orange;
                     text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
-                    font-size: 16px;
+                    font-size: 1.2em;
                     text-decoration: none;
                 }
             }
@@ -40,34 +60,55 @@ header {
     }
 }
 
-.body-content {
-    width: 90%;
-    margin: 0 auto;
+// Main content
+.body-wrapper {
+    background: @theme-color;
+    padding: 5px 0 20px 0;
+
+    .body-content {
+        width: @wrapper-width;
+        margin: 0 auto;
+        
+        h1 {
+            color: #ffffff;        
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
     
-    h1 {
-        color: #ffffff;        
-        font-size: 36px;
-        font-weight: 700;
-        text-shadow: 1px 1px 1px rgba(0,0,0,.2);
-        letter-spacing: -2px;
-    }
+        article {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 5px #888888;
+            padding: 10px;
 
-    article {
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 0 5px #888888;
-        padding: 10px;
+            .deep-link {
+                text-decoration: none;
+                color: @dark-gray;
 
-        img {
-            width: 100%;
-            border: 1px solid #e6e6e6;
-            border-radius: 2px;
-            box-shadow: 1px 1px 3px 1px rgba(0,0,0,.04);
+                h2 {
+                    font-size: 2em;
+                    font-weight: 400;
+                }
+            }
+            
+            img {
+                width: 100%;
+                border: 1px solid #e6e6e6;
+                border-radius: 2px;
+                box-shadow: 1px 1px 3px 1px rgba(0,0,0,.04);
+            }
         }
     }
 }
 
-/* Hide/rearrange for smaller screens */
+footer {
+    width: @wrapper-width;
+    margin: 0 auto;
+}
+
 @media screen and (min-width: 767px) {
     .body-content {
         max-width: @max-width;
