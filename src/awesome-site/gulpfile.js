@@ -24,4 +24,6 @@ gulp.task('lessWatch', function(){
   gulp.watch(config.lessSrc, [config.lessTask]);
 });
 
-gulp.task('default', ['lessWatch',config.lessTask]);
+gulp.task('dev', ['lessWatch',config.lessTask]);
+
+gulp.task('prod-deploy', [config.lessTask]);
