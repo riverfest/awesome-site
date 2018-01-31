@@ -8,6 +8,7 @@
     "less": "^2.7.3"
   },
   "dependencies": {
+    "commonmark": "^0.28.1",
     "gulp-cached": "^1.1.1",
     "gulp-sourcemaps": "^2.6.3"
   }
