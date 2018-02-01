@@ -1,17 +1,21 @@
-var gulp = require("gulp");
-var less = require('gulp-less');
-var sourcemaps = require('gulp-sourcemaps');
-var cache = require('gulp-cached');
-var path = require('path');
+var gulp = require("gulp"),
+    less = require('gulp-less'),
+    sourcemaps = require('gulp-sourcemaps'),
+    cache = require('gulp-cached'),
+    path = require('path');
 
 var config = {
   lessSrc: './Styles/*.less',
-  lessTask: 'less'
+  lessTask: 'less',
+  lessWatchTask: 'lessWatch',
+  commonMarkSrc: './Cms/**/*.markdown',
+  commonMarkTask: 'convertCommonMark',
+  commonMarkWatchTask: 'commonMarkWatch'
 };
 
 gulp.task(config.lessTask, function () {
   return gulp.src(config.lessSrc)
-    .pipe(cache('lessCache'))
+    .pipe(cache('less'))
     .pipe(sourcemaps.init())
     .pipe(less({
       paths: [ path.join(__dirname, config.lessTask, 'includes') ]
@@ -20,10 +24,20 @@ gulp.task(config.lessTask, function () {
     .pipe(gulp.dest('./wwwroot/css'));
 });
 
-gulp.task('lessWatch', function(){
+gulp.task(config.lessWatchTask, function(){
   gulp.watch(config.lessSrc, [config.lessTask]);
 });
 
-gulp.task('dev', ['lessWatch',config.lessTask]);
+gulp.task(config.commonMarkTask, function () {
+  return gulp.src(config.commonMarkSrc)
+    .pipe(cache('commonMark'))
+    .pipe(md({preset: 'commonmark'}))
+})
 
-gulp.task('prod-deploy', [config.lessTask]);
+gulp.task(config.commonMarkWatchTask, function(){
+  gulp.watch(config.commonMarkSrc, [config.commonMarkTask]);
+});
+
+gulp.task('dev', [config.lessWatchTask, config.lessTask, config.commonMarkWatchTask, config.commonMarkTask]);
+
+gulp.task('prod-deploy', [config.lessTask, config.commonMarkTask]);
