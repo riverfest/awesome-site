@@ -1,8 +1,9 @@
 var gulp = require("gulp"),
-    less = require('gulp-less'),
-    sourcemaps = require('gulp-sourcemaps'),
-    cache = require('gulp-cached'),
-    path = require('path');
+  less = require('gulp-less'),
+  sourcemaps = require('gulp-sourcemaps'),
+  cache = require('gulp-cached'),
+  path = require('path'),
+  markdown = require('gulp-markdown');
 
 var config = {
   lessSrc: './Styles/*.less',
@@ -25,19 +26,22 @@ gulp.task(config.lessTask, function () {
 });
 
 gulp.task(config.lessWatchTask, function(){
-  gulp.watch(config.lessSrc, [config.lessTask]);
+  gulp.watch(config.lessSrc, gulp.parallel(config.lessTask));
 });
 
 gulp.task(config.commonMarkTask, function () {
-  return gulp.src(config.commonMarkSrc)
+  return gulp.src(config.commonMarkSrc, { base: 'client' })
     .pipe(cache('commonMark'))
-    .pipe(md({preset: 'commonmark'}))
-})
-
-gulp.task(config.commonMarkWatchTask, function(){
-  gulp.watch(config.commonMarkSrc, [config.commonMarkTask]);
+    .pipe(markdown())
+    .pipe(gulp.dest(function (file) {
+      return file.base;
+  }));
 });
 
-gulp.task('dev', [config.lessWatchTask, config.lessTask, config.commonMarkWatchTask, config.commonMarkTask]);
+gulp.task(config.commonMarkWatchTask, function(){
+  gulp.watch(config.commonMarkSrc, gulp.parallel(config.commonMarkTask));
+});
 
-gulp.task('prod-deploy', [config.lessTask, config.commonMarkTask]);
+gulp.task('dev', gulp.parallel(config.lessWatchTask, config.lessTask, config.commonMarkWatchTask, config.commonMarkTask));
+
+gulp.task('prod-deploy', gulp.parallel(config.lessTask, config.commonMarkTask));
