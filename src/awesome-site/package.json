@@ -2,13 +2,12 @@
   "version": "1.0.0",
   "name": "asp.net",
   "private": true,
-  "devDependencies": {
-    "gulp": "3.9.1",
-    "gulp-less": "3.3.0",
-    "less": "^2.7.3"
-  },
   "dependencies": {
+    "gulp": "4.0.0",
     "gulp-cached": "^1.1.1",
-    "gulp-sourcemaps": "^2.6.3"
+    "gulp-less": "3.3.0",
+    "gulp-markdown": "^2.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "less": "^2.7.3"
   }
 }
