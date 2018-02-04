@@ -29,7 +29,6 @@ namespace awesome_site
       {
         app.UseDeveloperExceptionPage();
         app.UseBrowserLink();
-        contentTypeProvider.Mappings[".less"] = "text/css";
       }
       else
       {
@@ -43,9 +42,7 @@ namespace awesome_site
 
       app.UseMvc(routes =>
       {
-        routes.MapRoute(
-                  name: "default",
-                  template: "{controller=Home}/{action=Index}/{id?}");
+        routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
       });
     }
   }
