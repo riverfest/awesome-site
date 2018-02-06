@@ -27,7 +27,7 @@ namespace awesome_site.Controllers
 
     private async static Task<Page> GetPageFromFilePath(string filePath)
     {
-      string fileContents = await System.IO.File.ReadAllTextAsync(filePath, System.Text.UTF8Encoding.UTF8));
+      string fileContents = await System.IO.File.ReadAllTextAsync(filePath, System.Text.UTF8Encoding.UTF8);
       
       var page = new DeserializerBuilder()
         .WithNamingConvention(new CamelCaseNamingConvention())
