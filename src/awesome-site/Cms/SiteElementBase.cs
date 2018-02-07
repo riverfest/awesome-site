@@ -4,5 +4,6 @@ namespace awesome_site.Cms
   {
     public string Version { get; set; }
     public bool Active { get; set; }
+    public string FileBaseName { get; set; }
   }
 }
