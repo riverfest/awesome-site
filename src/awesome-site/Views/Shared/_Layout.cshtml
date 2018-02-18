@@ -15,10 +15,30 @@
 <body>
   <header>
     <nav id="main_menu">
-      <ul>
+      <label for="drop" class="toggle">Menu</label>
+      <input type="checkbox" id="drop" />
+      <ul class="menu">
         <li><a href="#">Lovsangsplade</a></li>
         <li><a href="#">Galleri</a></li>
-        <li><a href="#">Arkiv</a></li>
+        <li>
+          <label for="drop-1" class="toggle">Arkiv +</label>
+          <a href="#">Arkiv</a>
+          <input type="checkbox" id="drop-1" />
+          <ul>
+            <li><a href="#">Themes and stuff</a></li>
+            <li>
+              <label for="drop-2" class="toggle">Plugins +</label>
+              <a href="#">Plugins</a>
+              <input type="checkbox" id="drop-2" />
+              <ul>
+                <li><a href="#">Drop content 1</a></li>
+                <li><a href="#">Drop content 2</a></li>
+                <li><a href="#">Drop content 3</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Tutorials</a></li>
+          </ul>
+        </li>
         <li><a href="#">Information</a></li>
       </ul>
     </nav>

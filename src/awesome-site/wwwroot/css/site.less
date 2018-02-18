@@ -30,16 +30,47 @@ a {
 
 header {
     height: 50px;
-    
+
     nav {
-        width: @wrapper-width;
-        max-width: @max-width;
+        width: 100%;
         margin: 0 auto;
+
+        // Per default, hide the menu
+        .toggle + a,
+        [id^=drop],
+        .menu {
+            display: none;
+        }
+
+        // Display Dropdown when clicked on Parent Lable
+        [id^=drop]:checked + ul {
+            display: block;
+        }
+
+        // Show our label
+        .toggle {
+            cursor: pointer;
+            display: block;
+            padding:14px 20px;
+            font-size:17px;
+            text-decoration:none;
+            border:none;
+
+            &:hover {
+                background-color: red;
+            }
+        }
 
         ul {
             position: relative;
             float: right;
             padding: 0;
+            list-style: none;
+            width: 100%;
+
+            ul {
+                display: none;
+            }
 
             li {
                 margin: 0;
@@ -50,10 +81,16 @@ header {
 
                 a {
                     text-transform: uppercase;
-                    padding: 0 15px;
+                    padding: 15px;
                     text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
                     font-size: 1.2em;
                     text-decoration: none;
+                    width: 100%;
+                    display: block;
+
+                    &:hover {
+                        background-color: red;
+                    }
                 }
             }
         }
@@ -112,5 +149,44 @@ footer {
 @media screen and (min-width: 767px) {
     .body-content {
         max-width: @max-width;
+    }
+
+    header {
+                
+        nav {
+            width: @wrapper-width;
+            max-width: @max-width;
+
+            // Reverse the default value
+            .menu {
+                display: block;
+                width: auto;
+            }
+
+            // Hide labels and other mobile-sepcific content
+            .toggle + a,
+            .toggle,
+            [id^=drop] {
+                display: none;
+            }
+    
+            ul {
+    
+                ul {
+
+                }
+    
+                li {
+    
+                    &:hover > ul {
+                        display: inherit;
+                    }
+    
+                    a {
+                        display: inline;
+                    }
+                }
+            }
+        }
     }
 }
