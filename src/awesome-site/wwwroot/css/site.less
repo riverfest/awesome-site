@@ -13,6 +13,8 @@
 @menu-width: 170px;
 @menu-link-padding: 15px;
 @menu-line-height: 50px;
+@menu-background-color: @white;
+@menu-text-color: @orange;
 
 // General Rules start
 html {
@@ -55,11 +57,15 @@ header {
         .toggle {
             cursor: pointer;
             display: block;
-            padding: 14px 20px;
+            padding: 0 20px;
             font-size: 1.2em;
             border: none;
+            line-height: @menu-line-height;
 
-            &:hover { background-color: red; }
+            &:hover { 
+                background-color: @menu-text-color; 
+                color: @menu-background-color;
+            }
         }
 
         ul {
@@ -68,7 +74,6 @@ header {
             padding: 0;
             list-style: none;
             width: 100%;
-            background-color: white;
             margin: 0;
 
             ul {
@@ -82,20 +87,25 @@ header {
                 list-style: none;
                 float: left;
                 width: 100%;
+                background-color: @menu-background-color;
 
                 a, .toggle {
                     text-transform: uppercase;
-                    padding: @menu-link-padding;
+                    padding: 0 @menu-link-padding;
                     text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
                     width: 100%;
-
+                    line-height: @menu-line-height;
                 }
 
                 a {
                     display: block;
                     text-decoration: none;
                     font-size: 1.2em;
-					&:hover { background-color: red; }
+
+                    &:hover { 
+                        background-color: @menu-text-color; 
+                        color: @menu-background-color;
+                    }
                 }
             }
         }
@@ -157,7 +167,7 @@ footer {
     }
 
     header {
-                
+
         nav {
             width: @wrapper-width;
             max-width: @max-width;
@@ -191,8 +201,10 @@ footer {
 
                     li {
                         width: @menu-width;
-                        a {
+                        a, .toggle {
                             display: block;
+                            line-height: normal;
+                            padding: @menu-link-padding;
                         }
                     }
 
@@ -206,12 +218,13 @@ footer {
                 }
     
                 li {
-                    width: auto;
-                    background-color: @white;
+                    width: auto;                    
     
-                    a {
+                    a, .toggle {
                         display: inline;
                         width: auto;
+                        line-height: @menu-line-height;
+                        padding: @menu-link-padding;
                     }
                 }
             }
