@@ -78,6 +78,7 @@ header {
                 position: relative;
                 list-style: none;
                 float: left;
+                width: 100%;
 
                 a {
                     text-transform: uppercase;
@@ -164,20 +165,34 @@ footer {
             }
 
             // Hide labels and other mobile-sepcific content
-            .toggle + a,
+            // .toggle + a,
             .toggle,
             [id^=drop] {
                 display: none;
             }
     
             ul {
-    
-                ul {
+                
+                .toggle + a {
+                    display: inline;
+                }
 
+                ul {
+                    position: absolute;
+                    top: 50px;
+
+                    ul {
+                        li {
+                            position: relative;
+                            top: -50px;
+                            left: 170px;
+                        }
+                    }
                 }
     
                 li {
-    
+                    width: auto;
+                    
                     &:hover > ul {
                         display: inherit;
                     }
