@@ -55,7 +55,9 @@ namespace awesome_site.Controllers
         .Deserialize<Page>(fileContents);
 
       page.FileBaseName = Path.GetFileNameWithoutExtension(filePath);
-      page.Content = await System.IO.File.ReadAllTextAsync(filePath.Substring(0, filePath.Length - ".yaml".Length) + ".html", System.Text.UTF8Encoding.UTF8);
+      var markdown = await System.IO.File.ReadAllTextAsync(filePath.Substring(0, filePath.Length - ".yaml".Length) + ".markdown", System.Text.UTF8Encoding.UTF8);
+
+      page.Content = CommonMark.CommonMarkConverter.Convert(markdown);
 
       page.Section = System.IO.Path.GetDirectoryName(filePath).Substring(rootSearchPath.Length);
 

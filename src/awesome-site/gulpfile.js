@@ -9,8 +9,7 @@ var config = {
   lessSrc: './wwwroot/css',
   lessTask: 'less',
   commonMarkSrc: './Cms/**/*.markdown',
-  commonMarkTask: 'convertCommonMark',
-  commonMarkWatchTask: 'commonMarkWatch'
+  commonMarkTask: 'convertCommonMark'
 };
 
 gulp.task(config.lessTask, function () {
@@ -32,11 +31,5 @@ gulp.task(config.commonMarkTask, function () {
       return file.base;
   }));
 });
-
-gulp.task(config.commonMarkWatchTask, function(){
-  gulp.watch(config.commonMarkSrc, gulp.parallel(config.commonMarkTask));
-});
-
-gulp.task('dev', gulp.parallel(config.commonMarkWatchTask, config.commonMarkTask));
 
 gulp.task('prod-deploy', gulp.parallel(config.lessTask, config.commonMarkTask));
