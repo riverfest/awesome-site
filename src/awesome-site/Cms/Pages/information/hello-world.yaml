@@ -1,0 +1,4 @@
+version: 1
+title: "Hello World!"
+header: "Test site"
+active: true
