@@ -6,7 +6,7 @@
   <title>@ViewData["Title"] - awesome_site</title>
 
   <environment include="Development">
-    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+    <link rel="stylesheet/less" type="text/css" href="~/css/site.less" />
   </environment>
   <environment include="Production">
     <link rel="stylesheet" type="text/css" href="~/css/site.min.css" />
@@ -23,7 +23,7 @@
       </ul>
     </nav>
   </header>
- 
+
   <div class="body-wrapper">
     <div class="body-content">    
       <div>
@@ -34,5 +34,9 @@
   <footer>
     <p>&copy; 2017 - awesome_site</p>
   </footer>
+
+  <environment include="Development">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.3/less.min.js" asp-append-version="false"></script>
+  </environment>
 </body>
 </html>
