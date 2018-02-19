@@ -29,11 +29,12 @@ namespace awesome_site
       {
         app.UseDeveloperExceptionPage();
         app.UseBrowserLink();
+        contentTypeProvider.Mappings[".less"] = "text/css";
       }
       else
       {
         app.UseExceptionHandler("/Home/Error");
-      } 
+      }
 
       app.UseStaticFiles(new StaticFileOptions()
       {
