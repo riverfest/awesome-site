@@ -10,6 +10,12 @@
 @font-color: @light-gray;
 @theme-color: @orange;
 
+@menu-width: 170px;
+@menu-link-padding: 15px;
+@menu-line-height: 50px;
+@menu-background-color: @white;
+@menu-text-color: @orange;
+
 // General Rules start
 html {
     font-size: 14px;
@@ -23,23 +29,56 @@ body {
     color: @font-color;
 }
 
-a {
+a, .toggle {
     color: @theme-color;
 }
 // General rules end
 
 header {
-    height: 50px;
-    
+    height: @menu-line-height;
+
     nav {
-        width: @wrapper-width;
-        max-width: @max-width;
+        width: 100%;
         margin: 0 auto;
+
+        // Per default, hide the menu
+        .toggle + a,
+        [id^=drop],
+        .menu {
+            display: none;
+        }
+
+        // Display Dropdown when clicked on Parent Lable
+        [id^=drop]:checked + ul {
+            display: block;
+        }
+
+        // Show our labels
+        .toggle {
+            cursor: pointer;
+            display: block;
+            padding: 0 20px;
+            font-size: 1.2em;
+            border: none;
+            line-height: @menu-line-height;
+
+            &:hover { 
+                background-color: @menu-text-color; 
+                color: @menu-background-color;
+            }
+        }
 
         ul {
             position: relative;
             float: right;
             padding: 0;
+            list-style: none;
+            width: 100%;
+            margin: 0;
+
+            ul {
+                display: none;
+            }
 
             li {
                 margin: 0;
@@ -47,13 +86,26 @@ header {
                 position: relative;
                 list-style: none;
                 float: left;
+                width: 100%;
+                background-color: @menu-background-color;
+
+                a, .toggle {
+                    text-transform: uppercase;
+                    padding: 0 @menu-link-padding;
+                    text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+                    width: 100%;
+                    line-height: @menu-line-height;
+                }
 
                 a {
-                    text-transform: uppercase;
-                    padding: 0 15px;
-                    text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
-                    font-size: 1.2em;
+                    display: block;
                     text-decoration: none;
+                    font-size: 1.2em;
+
+                    &:hover { 
+                        background-color: @menu-text-color; 
+                        color: @menu-background-color;
+                    }
                 }
             }
         }
@@ -112,5 +164,69 @@ footer {
 @media screen and (min-width: 767px) {
     .body-content {
         max-width: @max-width;
+    }
+
+    header {
+        nav {
+            width: @wrapper-width;
+            max-width: @max-width;
+
+            // Reverse the default value
+            .menu {
+                display: block;
+                width: auto;
+            }
+
+            // Hide labels and other mobile-sepcific content
+            .toggle,
+            [id^=drop] {
+                display: none;
+            }
+    
+            ul {
+                
+                .toggle {
+                    display: inline;
+                }
+
+                ul {
+                    position: absolute;
+                    top: 50px;
+                    
+                    .toggle {
+                        display: block;
+                        width: auto;
+                    }
+
+                    li {
+                        width: @menu-width;
+                        a, .toggle {
+                            display: block;
+                            line-height: normal;
+                            padding: @menu-link-padding;
+                        }
+                    }
+
+                    ul {
+                        li {
+                            position: relative;
+                            top: -@menu-line-height; // Substract the line-height                            
+                            right: @menu-width; // Shift it to the right
+                        }
+                    }
+                }
+    
+                li {
+                    width: auto;                    
+    
+                    a, .toggle {
+                        display: inline;
+                        width: auto;
+                        line-height: @menu-line-height;
+                        padding: @menu-link-padding;
+                    }
+                }
+            }
+        }
     }
 }
