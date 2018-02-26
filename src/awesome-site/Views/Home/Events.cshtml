@@ -1,0 +1,13 @@
+@model List<awesome_site.Cms.Events.Event>
+<article>
+  <ul>
+  @foreach (var eventElement in @Model) {
+    <li>
+      <p>From: @eventElement.EventStartTime</p>
+      <p>To: @eventElement.EventEndTime</p>
+      <p>Content:</p>
+      <p>@Html.Raw(eventElement.Content)</p>
+    </li>
+  }
+  </ul
+></article>

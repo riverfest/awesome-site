@@ -4,6 +4,7 @@ using awesome_site.Models;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using awesome_site.Cms.Pages;
+using awesome_site.Cms.Events;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq;
@@ -28,6 +29,13 @@ namespace awesome_site.Controllers
       return View("Content", page);
     }
 
+    [Route("events")]
+    public IActionResult Events()
+    {
+      ViewBag.Title = "Events";
+      return View("Events", _events.Value);
+    }
+
     public IActionResult Error()
     {
       return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
@@ -35,7 +43,9 @@ namespace awesome_site.Controllers
 
 #region Markdown/Yaml parsing section
     private const string PagesPath = @"./Cms/Pages/";
+    private const string EventsPath = @"./Cms/Events/";
     private static Lazy<List<Page>> _pages = new Lazy<List<Page>>(() => GetAllPages().Result.ToList());
+    private static Lazy<List<Event>> _events = new Lazy<List<Event>>(() => GetAllEvents().Result.ToList());
 
     private async static Task<Page[]> GetAllPages()
     {
@@ -62,6 +72,31 @@ namespace awesome_site.Controllers
       page.Section = System.IO.Path.GetDirectoryName(filePath).Substring(rootSearchPath.Length);
 
       return page;
+    }
+
+    private async static Task<Event[]> GetAllEvents()
+    {
+      return await Task.WhenAll(
+        Directory
+          .EnumerateFiles(EventsPath, "*.yaml", SearchOption.AllDirectories)
+          .Select(path => GetEventFromFilePath(path, PagesPath)));
+    }
+
+    private async static Task<Event> GetEventFromFilePath(string filePath, string rootSearchPath)
+    {
+      string fileContents = await System.IO.File.ReadAllTextAsync(filePath, System.Text.UTF8Encoding.UTF8);
+      
+      var eventElement = new DeserializerBuilder()
+        .WithNamingConvention(new CamelCaseNamingConvention())
+        .Build()
+        .Deserialize<Event>(fileContents);
+
+      eventElement.FileBaseName = Path.GetFileNameWithoutExtension(filePath);
+      var markdown = await System.IO.File.ReadAllTextAsync(filePath.Substring(0, filePath.Length - ".yaml".Length) + ".markdown", System.Text.UTF8Encoding.UTF8);
+
+      eventElement.Content = CommonMark.CommonMarkConverter.Convert(markdown);
+
+      return eventElement;
     }
   }
   #endregion
