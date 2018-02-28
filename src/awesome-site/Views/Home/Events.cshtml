@@ -1,13 +1,19 @@
 @model List<awesome_site.Cms.Events.Event>
-<article>
+<article>    
+  @foreach (var day in @Model.GroupBy(e => e.EventStartTime.Day)) {
+  var eventStartTime = day.First().EventStartTime;
+  <h2>@eventStartTime.ToString("dddd d. MMMM")</h2>
   <ul>
-  @foreach (var eventElement in @Model) {
+    @foreach (var eventElement in day) {
     <li>
-      <p>From: @eventElement.EventStartTime</p>
-      <p>To: @eventElement.EventEndTime</p>
+      @if (eventElement.PublicStartTime) {
+        <p>From: @eventElement.EventStartTime</p>
+        <p>To: @eventElement.EventEndTime</p>
+      }
       <p>Content:</p>
       <p>@Html.Raw(eventElement.Content)</p>
     </li>
+    }
+  </ul>
   }
-  </ul
-></article>
+</article>
