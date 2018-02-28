@@ -6,6 +6,7 @@ namespace awesome_site.Cms.Pages
     public string Header { get; set; }
     public string Section { get; set; }
     public string Content { get; set; }
+    public string ContentAsHtml { get; set; }
 
     public string FullPath => $"{Section}/{FileBaseName}";
   }

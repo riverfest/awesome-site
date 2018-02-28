@@ -1,1 +1,0 @@
-Velkomst og åbning af Å-festival 2018
