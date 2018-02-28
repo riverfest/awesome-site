@@ -1,8 +1,7 @@
 @model List<awesome_site.Cms.Events.Event>
-<article>    
-  @foreach (var day in @Model.GroupBy(e => e.EventStartTime.Day)) {
-  var eventStartTime = day.First().EventStartTime;
-  <h2>@eventStartTime.ToString("dddd d. MMMM")</h2>
+<article>
+  @foreach (var day in @Model.GroupBy(e => e.EventStartTime.Date)) {
+  <h2>@day.Key.ToString("dddd d. MMMM")</h2>
   <ul>
     @foreach (var eventElement in day.OrderBy(e => e.PublicStartTime)) {
     <li>
