@@ -4,7 +4,7 @@
   var eventStartTime = day.First().EventStartTime;
   <h2>@eventStartTime.ToString("dddd d. MMMM")</h2>
   <ul>
-    @foreach (var eventElement in day) {
+    @foreach (var eventElement in day.OrderBy(e => e.PublicStartTime)) {
     <li>
       @if (eventElement.PublicStartTime) {
         <p>From: @eventElement.EventStartTime</p>
