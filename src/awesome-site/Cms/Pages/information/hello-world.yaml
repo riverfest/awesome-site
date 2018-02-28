@@ -2,3 +2,7 @@ version: 1
 title: "Hello World!"
 header: "Test site"
 active: true
+content: |
+  *Hello **WORLD***
+
+  Now with multiline content!

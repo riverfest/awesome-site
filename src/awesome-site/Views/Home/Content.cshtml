@@ -1,5 +1,5 @@
 @model awesome_site.Cms.Pages.Page
 <h1>@Model.Header</h1>
 <article>
-@Html.Raw(Model.Content)
+@Html.Raw(Model.ContentAsHtml)
 </article>
