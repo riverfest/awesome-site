@@ -1,5 +1,9 @@
 version: 1
-publicStartTime: false
 active: true
+publicStartTime: true
 eventStartTime: 2018-05-18T20:00:00
 eventEndTime: 2018-05-18T20:30:00
+programContent: |
+  Tale v/ **Michael Nygaard**
+  
+  "Play"
