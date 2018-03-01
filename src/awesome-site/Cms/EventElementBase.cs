@@ -6,7 +6,5 @@ namespace awesome_site.Cms
   {
     public bool PublicStartTime { get; set; }
     public DateTime EventStartTime { get; set; }
-    public DateTime EventEndTime { get; set; }
-
   }
 }
