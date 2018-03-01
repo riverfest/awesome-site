@@ -135,6 +135,31 @@ header {
             border-radius: 10px;
             box-shadow: 0 0 5px #888888;
             padding: 10px;
+            singleEventWrapper {  
+                @border-color: #dadada;
+                
+                border-bottom: 1px dotted @border-color;
+                flex-wrap: wrap;
+                display: flex;
+
+                eventTime {
+                    position: relative;
+                    float: left;
+                    width: 10%;
+                    max-width: 200px;
+                    display: block;
+                    text-align: center;
+                }
+    
+                eventDescription {
+                    position: relative;
+                    float: left;         
+                    max-width: 90%;
+                    display: block;
+                    padding-left: 10px;
+                    border-left: 1px dotted @border-color;
+                }
+            }
 
             .deep-link {
                 text-decoration: none;
