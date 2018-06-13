@@ -5,9 +5,10 @@
   "dependencies": {
     "gulp": "4.0.0",
     "gulp-cached": "^1.1.1",
-    "gulp-less": "3.3.0",
+    "gulp-less": "^4.0.0",
     "gulp-markdown": "^2.0.1",
     "gulp-sourcemaps": "^2.6.4",
-    "less": "^2.7.3"
+    "less": "^3.0.4",
+    "npm": "^6.1.0"
   }
 }
