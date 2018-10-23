@@ -8,20 +8,21 @@
     }
   },
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
+    "Production": {
+      "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      },
+      "launchUrl": "http://0.0.0.0:60094/"
     },
-    "awesome_site": {
+    "Development": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://0.0.0.0:60095/"
+      "launchUrl": "http://localhost:60094/"
     }
   }
 }
