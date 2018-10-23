@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceRoot}/src/awesome-site/bin/Debug/netcoreapp2.0/awesome-site.dll",
+            "program": "${workspaceRoot}/src/awesome-site/bin/Debug/netcoreapp2.1/awesome-site.dll",
             "args": [],
             "cwd": "${workspaceRoot}/src/awesome-site",
             "stopAtEntry": false,
