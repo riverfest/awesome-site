@@ -5,6 +5,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "PowerShell",
+      "request": "launch",
+      "name": "PowerShell Launch Current File",
+      "script": "${file}",
+      "args": [],
+      "cwd": "${file}"
+    },
+    {
       "name": ".NET Core Launch (web)",
       "type": "coreclr",
       "request": "launch",
