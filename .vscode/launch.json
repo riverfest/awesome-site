@@ -17,7 +17,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/src/awesome-site/bin/Debug/netcoreapp2.1/awesome-site.dll",
+      "program": "${workspaceFolder}/src/awesome-site/bin/Debug/netcoreapp2.2/awesome-site.dll",
       "args": [],
       "cwd": "${workspaceFolder}/src/awesome-site",
       "stopAtEntry": false,
